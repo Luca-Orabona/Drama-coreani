@@ -1,0 +1,167 @@
+/* --- struttura base card --- */
+.dramaCard {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  /* overflow: hidden;  ❌ rimosso per mostrare i tooltip */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative; /* ✅ per gestire z-index interni */
+}
+
+/* --- effetto hover card --- */
+.dramaCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* --- contenitore immagine --- */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 315px;
+  overflow: visible; /* ✅ serve per i tooltip */
+}
+
+/* --- immagine --- */
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+  border-radius: 18px 18px 0 0;
+  clip-path: inset(0 round 18px 18px 0 0); /* ✅ mantiene i bordi arrotondati */
+}
+
+/* --- zoom immagine su hover --- */
+.dramaCard:hover .image {
+  transform: scale(1.05);
+}
+
+/* --- contenitore icone --- */
+.cardIcons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  overflow: visible;
+}
+
+/* --- pulsanti icone --- */
+.iconBtn {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #2b53ca;
+  z-index: 11;
+}
+
+/* --- hover pulsante icona --- */
+.iconBtn:hover {
+  background: #2b53ca;
+  color: #fff;
+}
+
+/* --- stato attivo (preferito) --- */
+.active {
+  background: #d94b4b;
+  color: #fff;
+}
+
+/* --- tooltip (testo) --- */
+.iconBtn::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -28px;
+  /* top: -40px; */
+  right: 50%;
+  transform: translateX(50%) translateY(8px);
+  background: rgba(43, 83, 202, 0.95);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- freccetta tooltip --- */
+.iconBtn::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  /* top: -10px; */
+  right: 50%;
+  transform: translateX(50%) translateY(8px);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(43, 83, 202, 0.95) transparent transparent transparent;
+  opacity: 0;
+  z-index: 20;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- mostra tooltip su hover --- */
+.iconBtn:hover::before,
+.iconBtn:hover::after {
+  opacity: 1;
+  transform: translateX(50%) translateY(0);
+}
+
+/* --- categoria --- */
+.category {
+  display: inline-block;
+  margin: 4px 0 10px;
+  padding: 4px 10px;
+  border: 1.5px solid #2b53ca;
+  color: #2b53ca;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+/* --- info testuale --- */
+.info {
+  padding: 15px 18px;
+  text-align: left;
+}
+
+/* --- titolo --- */
+.info h3 {
+  color: #1f2d5a;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+/* --- descrizione --- */
+.info p {
+  color: #5e6a7d;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* --- responsive: nascondi tooltip su mobile --- */
+@media (max-width: 768px) {
+  .iconBtn::before,
+  .iconBtn::after {
+    display: none;
+  }
+}
