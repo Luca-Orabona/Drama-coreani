@@ -1,0 +1,108 @@
+/* HEADER  */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: linear-gradient(90deg, rgba(162, 19, 19, 0.6), #2b53ca, #4aa7e1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* LOGO */
+.logo h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+}
+
+/* NAV LINKS */
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: transform 0.3s ease;
+}
+
+/* Singolo link */
+.navLinks a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 12px;
+    transition: background 0.3s, transform 0.2s;
+    position: relative;
+}
+
+/* Effetto hover */
+.navLinks a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Link attivo (pagina corrente) */
+.activeLink {
+    background-color: rgba(255, 99, 71, 0.7);
+    color: #fff;
+}
+
+
+
+/* MENU TOGGLE Icona hamburger per dispositivi mobili */
+.menuToggle {
+    display: none;
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Effetto hover sull’icona */
+.menuToggle:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(255, 80, 80, 0.8));
+}
+
+/* OVERLAY Sfondo scuro dietro il menu mobile */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 800;
+}
+
+/* RESPONSIVE Stili per schermi < 768px */
+@media (max-width: 768px) {
+
+    /* Menu laterale mobile */
+    .navLinks {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 180px;
+        padding: 25px;
+        gap: 18px;
+        background: linear-gradient(180deg, #3a5fcd, #87cefa);
+        border-radius: 10px 0 0 10px;
+        transform: translate(100%, -50%);
+        transition: transform 0.28s ease;
+        z-index: 900;
+    }
+
+    /* Stato attivo (menu visibile) */
+    .navLinksActive {
+        transform: translate(0, -50%);
+    }
+
+    /* Mostra l’icona hamburger */
+    .menuToggle {
+        display: block;
+    }
+}
