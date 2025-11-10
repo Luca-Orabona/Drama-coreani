@@ -1,0 +1,164 @@
+:root {
+    --num-column: 6;
+    --g-size: 20px;
+}
+
+
+.dramaListPage {
+    padding: 60px 20px;
+    background: #f7f9fb;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* HERO SECTION */
+.heroSection {
+    margin-bottom: 50px;
+}
+
+/* Titolo principale con gradiente */
+.heroTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #2b53ca, #d94b4b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+/* Sottotitolo */
+.heroSubtitle {
+    color: #5a6472;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+/* Bottone “Aggiungi Drama” */
+.addDramaBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #2b53ca;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Hover del bottone */
+.addDramaBtn:hover {
+    background: #d94b4b;
+    transform: translateY(-2px);
+}
+
+/* BARRA FILTRI Contiene ricerca, categoria e ordinamento */
+.filterBar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 18px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    width: 93%;
+    margin: 0 auto 20px;
+}
+
+/* Input di ricerca */
+.filterBar input {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #d0d7e2;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.filterBar input:hover {
+    border-color: #2b53ca;
+}
+
+/* Wrapper per input e select */
+.filterInput,
+.filterSelect {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+/* Icona della lente di ricerca */
+.filterIconSearch {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    pointer-events: none;
+    z-index: 200;
+}
+
+/* Padding extra per lasciare spazio all’icona */
+.filterInput input {
+    padding-left: 38px !important;
+}
+
+/* COUNTER DRAMA Mostra quanti risultati sono visibili */
+.dramaCount {
+    color: #56667c;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+/* GRIGLIA DEI DRAMA Disposizione card responsive */
+.dramaGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--g-size);
+}
+
+.col {
+    width: calc((100% - (var(--g-size) * (var(--num-column) - 1))) / var(--num-column));
+}
+
+
+
+@media screen and (max-width: 1130px) {
+    
+    :root {
+        --num-column: 5;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    :root {
+        --num-column: 4;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    :root {
+        --num-column: 3;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    :root {
+        --num-column: 1;
+    }
+}
+
+
+.loadingText {
+    text-align: center;
+    margin-top: 60px;
+}
