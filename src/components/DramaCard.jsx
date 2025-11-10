@@ -17,7 +17,7 @@ const DramaCard = memo(({ drama }) => {
 
       <div className={styles.imageWrapper}>
         <img
-          src={`${VITE_API_URL}/${drama.coverImage}`}
+          src={`http://localhost:3001${drama.coverImage}`}
           alt={drama.title}
           className={styles.image}
         />
