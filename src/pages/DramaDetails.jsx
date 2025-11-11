@@ -1,6 +1,7 @@
 import { useParams, NavLink } from "react-router-dom";
 import { useDramaContext } from "../context/dramaContext";
 import { ArrowLeft, Heart, Video, Calendar, Tv, UserRound, Star } from "lucide-react";
+import { toast } from 'react-toastify';
 import styles from "./DramaDetails.module.css";
 
 function DramaDetails() {
@@ -61,7 +62,22 @@ function DramaDetails() {
           <div className={styles.dramaActions}>
             <button
               className={`${styles.favBtn} ${isFavorite ? styles.active : ""}`}
-              onClick={() => toggleFavorite(drama)}
+              onClick={() => {
+                if (isFavorite) {
+                  toast("Rimosso dai preferiti!", {
+                    icon: () => <span style={{ fontSize: "18px" }}>💔</span>,
+                    type: "error"
+                  });
+                } else {
+                  toast("Aggiunto ai preferiti!", {
+                    icon: () => <span style={{ fontSize: "18px" }}>❤️</span>,
+                    type: "success"
+                  });
+                }
+
+                toggleFavorite(drama)
+
+              }}
             >
               <Heart
                 size={18}

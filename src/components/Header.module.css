@@ -52,7 +52,37 @@
     color: #fff;
 }
 
+/* BADGE PREFERITI Cerchietto con il numero dei preferiti */
+.favoritesBadge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: linear-gradient(135deg, #d94b4b, #2b53ca);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  animation: popIn 0.3s ease;
+}
 
+/* Animazione per il badge */
+@keyframes popIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
 /* MENU TOGGLE Icona hamburger per dispositivi mobili */
 .menuToggle {

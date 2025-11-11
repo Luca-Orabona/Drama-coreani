@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X, Heart, Scale, Sparkles, House } from "lucide-react";
+import { useDramaContext } from "../context/dramaContext";
 import styles from "./Header.module.css";
 
 const Header = () => {
     // Gestisce l’apertura e chiusura del menu mobile
     const [menuOpen, setMenuOpen] = useState(false);
+
+    // Dati provenienti dal contesto (lista preferiti)
+    const { favorites } = useDramaContext();
 
     // Funzione che mostra/nasconde il menu mobile
     const toggleMenu = () => setMenuOpen(prev => !prev);
@@ -40,7 +44,7 @@ const Header = () => {
                     Drama
                 </NavLink>
 
-                {/* Preferiti */}
+                {/* 🔹 Preferiti (con badge numerico) */}
                 <NavLink
                     to="/favorites"
                     onClick={() => setMenuOpen(false)}
@@ -48,6 +52,12 @@ const Header = () => {
                 >
                     <Heart size={18} style={{ marginRight: "6px" }} />
                     <span>Preferiti</span>
+                    {/* Mostra badge solo se ci sono preferiti */}
+                    {favorites.length > 0 && (
+                        <span className={styles.favoritesBadge}>
+                            {favorites.length}
+                        </span>
+                    )}
                 </NavLink>
 
                 {/* Confronto Drama */}

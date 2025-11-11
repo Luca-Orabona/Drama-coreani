@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useRef } from "react";
+import useStorage from "../hooks/useStorage";
 const { VITE_API_URL } = import.meta.env;
 
 const DramaContext = createContext();
@@ -11,7 +12,7 @@ export const DramaProvider = ({ children }) => {
     const [sortOrder, setSortOrder] = useState("");
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [favorites, setFavorites] = useState([]);;
+    const [favorites, setFavorites] = useStorage("favorites", []);
     
 
     const categoriesRef = useRef([]);
