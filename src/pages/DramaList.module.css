@@ -56,6 +56,8 @@
 
 /* BARRA FILTRI Contiene ricerca, categoria e ordinamento */
 .filterBar {
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     justify-content: center;
     gap: 12px;
@@ -64,14 +66,12 @@
     padding: 15px 25px;
     border-radius: 18px;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-    width: 93%;
     margin: 0 auto 20px;
 }
 
 /* Input di ricerca */
 .filterBar input {
     flex: 1;
-    min-width: 250px;
     padding: 10px 15px;
     border-radius: 10px;
     border: 1px solid #d0d7e2;
@@ -83,6 +83,8 @@
 .filterBar input:hover {
     border-color: #2b53ca;
 }
+
+
 
 /* Wrapper per input e select */
 .filterInput,
@@ -130,7 +132,7 @@
 
 
 @media screen and (max-width: 1130px) {
-    
+
     :root {
         --num-column: 5;
     }
@@ -156,6 +158,8 @@
         --num-column: 1;
     }
 }
+
+
 
 
 .loadingText {

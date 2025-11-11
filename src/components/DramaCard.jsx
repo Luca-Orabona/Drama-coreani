@@ -5,12 +5,22 @@ import { useDramaContext } from "../context/dramaContext";
 import { toast } from 'react-toastify';
 import styles from "./DramaCard.module.css";
 
-const { VITE_API_URL } = import.meta.env;
 
 
 const DramaCard = memo(({ drama }) => {
   const { favorites, toggleFavorite } = useDramaContext();
   const isFavorite = favorites.some((fav) => fav.id === drama.id);
+
+  function truncateByWords(text, wordCount = 15) {
+    if (!text) return "";
+
+    const words = text.split(" ");
+
+    if (words.length <= wordCount) return text;
+
+    return words.slice(0, wordCount).join(" ") + "...";
+  }
+
 
   return (
     <div className={styles.dramaCard}>
@@ -69,7 +79,10 @@ const DramaCard = memo(({ drama }) => {
       <div className={styles.info}>
         <h3>{drama.title}</h3>
         <span className={styles.category}>{drama.category}</span>
-        <p>Una breve descrizione</p>
+        <p>
+          {truncateByWords(drama.description, 8)}
+        </p>
+
       </div>
 
     </div>
