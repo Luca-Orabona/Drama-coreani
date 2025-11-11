@@ -127,7 +127,6 @@ const DramaList = () => {
           <Search className={styles.filterIconSearch} size={18} />
           <input
             type="text"
-            //onKeyDown={handleKeyDown}
             placeholder="Cerca drama..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}

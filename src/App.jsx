@@ -2,6 +2,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import GuestLayout from "./layout/GuestLayout";
 import Home from "./pages/Home";
 import DramaList from "./pages/DramaList";
+import DramaDetails from "./pages/DramaDetails";
 import Favorites from "./pages/Favorites";
 import Compare from "./pages/Compare";
 
@@ -15,6 +16,7 @@ function App() {
           <Route element={<GuestLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/dramaList" element={<DramaList />} />
+            <Route path="/dramaDetails/:id" element={<DramaDetails />} />
             <Route path="/Favorites" element={<Favorites />} />
             <Route path="/confronto-drama" element={<Compare />} />
           </Route>
