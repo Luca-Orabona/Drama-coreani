@@ -7,7 +7,11 @@ import styles from "./Compare.module.css";
 
 function Compare() {
 
-  const { dramas } = useDramaContext();
+  const { dramas, fetchAllDramas } = useDramaContext();
+
+    useEffect(() => {
+        fetchAllDramas();
+    }, []);
 
   // Ogni slot rappresenta un "contenitore" di un drama
   const [slots, setSlots] = useState([

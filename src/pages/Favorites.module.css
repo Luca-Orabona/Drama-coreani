@@ -14,13 +14,13 @@
 }
 
 /* header */
-.favoritesHeader {
+.header {
     text-align: center;
     margin-bottom: 30px;
 }
 
 /* icona cuore grande */
-.favoritesIcon {
+.icon {
     width: 70px;
     height: 70px;
     background: linear-gradient(135deg, #d94b4b, #2b53ca);
@@ -33,14 +33,14 @@
 }
 
 /* titolo e contatore */
-.favoritesTitle {
+.title {
     font-size: 2.2rem;
     font-weight: 700;
     color: #1e1e1e;
     margin-bottom: 8px;
 }
 
-.favoritesCount {
+.count {
     font-size: 1.1rem;
     color: #5a6472;
 }

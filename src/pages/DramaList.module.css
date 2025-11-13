@@ -56,23 +56,45 @@
 
 /* BARRA FILTRI Contiene ricerca, categoria e ordinamento */
 .filterBar {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: center;
+    width: 95%;
+    display: grid;
     gap: 12px;
-    flex-wrap: wrap;
     background: #fff;
     padding: 15px 25px;
     border-radius: 18px;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
     margin: 0 auto 20px;
+
+    /* Layout desktop */
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        "search category sort";
 }
 
+/* Associo elementi alle aree */
+.filterInput   { grid-area: search; }
+.filterCat     { grid-area: category; } 
+.filterSort    { grid-area: sort; }     
+
+.filterBar > * {
+  min-width: 0;
+}
+
+
+/* Wrapper per input e select */
+.filterInput{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+
 /* Input di ricerca */
-.filterBar input {
+.filterInput input {
     flex: 1;
-    padding: 10px 15px;
+    padding: 10px 15px 10px 38px;
+    min-width: 0;
     border-radius: 10px;
     border: 1px solid #d0d7e2;
     font-size: 0.95rem;
@@ -80,20 +102,10 @@
     transition: border-color 0.3s ease;
 }
 
-.filterBar input:hover {
+.filterInput input:hover {
     border-color: #2b53ca;
 }
 
-
-
-/* Wrapper per input e select */
-.filterInput,
-.filterSelect {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex: 1;
-}
 
 /* Icona della lente di ricerca */
 .filterIconSearch {
@@ -106,10 +118,7 @@
     z-index: 200;
 }
 
-/* Padding extra per lasciare spazio all’icona */
-.filterInput input {
-    padding-left: 38px !important;
-}
+
 
 /* COUNTER DRAMA Mostra quanti risultati sono visibili */
 .dramaCount {
@@ -117,6 +126,7 @@
     font-size: 0.95rem;
     margin-bottom: 25px;
 }
+
 
 /* GRIGLIA DEI DRAMA Disposizione card responsive */
 .dramaGrid {
@@ -161,8 +171,28 @@
 
 
 
-
-.loadingText {
-    text-align: center;
-    margin-top: 60px;
+/* Search sopra, e sotto 2 colonne */
+@media (max-width: 845px) {
+    .filterBar {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "search search"
+            "category sort";
+    }
 }
+
+
+/* Tutto in colonna */
+@media (max-width: 590px) {
+    .filterBar {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "search"
+            "category"
+            "sort";
+    }
+}
+
+
+
+

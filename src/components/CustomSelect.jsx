@@ -55,7 +55,7 @@ function CustomSelect({ options, value, onChange = () => {}, placeholder, icon }
       {/* LISTA OPZIONI */}
       {open && (
         <ul className={styles.options}>
-          {options.map((opt) => (
+          {options.map(opt => (
             <li
               key={opt.value}
               className={opt.value === value ? styles.selectedOption : ""}

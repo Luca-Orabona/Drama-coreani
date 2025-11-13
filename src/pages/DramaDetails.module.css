@@ -32,6 +32,7 @@
     position: absolute;
     bottom: 80px;
     left: 4%;
+    right: 4%;
     color: #fff;
 }
 
@@ -185,14 +186,8 @@
     color: #fff;
 }
 
-/* info box */
-.infoBox ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
 
-.infoBox li {
+.box li {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -200,7 +195,7 @@
     margin-bottom: 12px;
 }
 
-.infoBox strong {
+.box strong {
     color: #2b53ca;
 }
 
@@ -216,6 +211,11 @@
 }
 
 @media (max-width: 600px) {
+
+  .dramaMain {
+           padding: 45px 20px;
+    }
+
     .heroContent {
         left: 5%;
         bottom: 30px;
