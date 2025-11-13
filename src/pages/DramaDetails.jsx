@@ -3,11 +3,19 @@ import { useDramaContext } from "../context/dramaContext";
 import { ArrowLeft, Heart, Video, Calendar, Tv, UserRound, Star } from "lucide-react";
 import { toast } from 'react-toastify';
 import styles from "./DramaDetails.module.css";
+import { useEffect } from "react";
 
 function DramaDetails() {
-  const { id } = useParams();
-  const { getDramaById, toggleFavorite, favorites } = useDramaContext();
-  const drama = getDramaById(id);
+  const { slug } = useParams();
+  const { dramas, getDramaBySlug, toggleFavorite, favorites, fetchAllDramas } = useDramaContext();
+
+  useEffect(() => {
+    if (dramas.length === 0) {
+      fetchAllDramas();
+    };
+  }, []);
+
+  const drama = getDramaBySlug(slug);
 
   if (!drama) {
     return <p className={styles.notFound}>Drama non trovato 😔</p>;
@@ -17,49 +25,61 @@ function DramaDetails() {
 
   return (
     <section className={styles.dramaDetails}>
+
       {/* hero */}
       <div className={styles.dramaHero}>
+
         <img
           src={`http://localhost:3001${drama.coverImage}`}
           alt={drama.title}
           className={styles.heroImg}
         />
+
         <div className={styles.heroOverlay}></div>
 
         <div className={styles.heroContent}>
+
           <NavLink to="/dramaList" className={styles.backBtn}>
             <ArrowLeft size={18} /> Torna alla lista
           </NavLink>
 
           <div className={styles.dramaTags}>
+
             {drama.category && (
               <span className={`${styles.tag} ${styles.primary}`}>
                 {drama.category}
               </span>
             )}
+
             {drama.status && (
               <span className={`${styles.tag} ${styles.secondary}`}>
                 {drama.status}
               </span>
             )}
+
           </div>
 
           <h1 className={styles.dramaTitle}>{drama.title}</h1>
 
           <div className={styles.dramaMeta}>
+
             {drama.rating && (
               <div className={`${styles.metaItem} ${styles.rating}`}>
                 <Star size={16} fill="#f5c518" stroke="none" />
                 <span>{drama.rating}</span>
               </div>
             )}
+
             {drama.year && <div className={styles.metaItem}>{drama.year}</div>}
+
             {drama.episodes && (
               <div className={styles.metaItem}>{drama.episodes} episodi</div>
             )}
+
           </div>
 
           <div className={styles.dramaActions}>
+
             <button
               className={`${styles.favBtn} ${isFavorite ? styles.active : ""}`}
               onClick={() => {
@@ -84,47 +104,65 @@ function DramaDetails() {
                 fill={isFavorite ? "#fff" : "none"}
                 strokeWidth={2}
               />
+
               {isFavorite ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
+
             </button>
+
             <a href={drama.trailerUrl} target="_blank" rel="noopener noreferrer" className={styles.trailerBtn}>
               <Video size={18} />
               Guarda trailer
             </a>
+
           </div>
+
         </div>
+
       </div>
 
       {/* contenuto principale */}
       <div className={styles.dramaMain}>
-        <div className={styles.rightCol}>
-          <div className={`${styles.box} ${styles.infoBox}`}>
+
+        {/* COLONNA SINISTRA */}
+        <div className={styles.leftCol}>
+
+          <div className={`${styles.box}`}>
+
             <h2>Informazioni</h2>
+
             <ul>
               <li>
                 <Calendar size={18} />
                 <strong>Anno:</strong> {drama.year || "—"}
               </li>
+
               <li>
                 <Tv size={18} />
                 <strong>Episodi:</strong> {drama.episodes || "—"}
               </li>
+
               {drama.network && (
                 <li>
                   <Tv size={18} />
                   <strong>Rete:</strong> {drama.network}
                 </li>
               )}
+
               {drama.director && (
                 <li>
                   <UserRound size={18} />
                   <strong>Regia:</strong> {drama.director}
                 </li>
               )}
+
             </ul>
           </div>
+
         </div>
 
-        <div className={styles.leftCol}>
+        {/* COLONNA DESTRA */}
+        <div className={styles.rightCol}>
+
           <div className={styles.box}>
             <h2>Trama</h2>
             <p>{drama.description || "Descrizione non disponibile."}</p>
@@ -156,6 +194,7 @@ function DramaDetails() {
             </div>
           )}
         </div>
+
       </div>
     </section>
   );

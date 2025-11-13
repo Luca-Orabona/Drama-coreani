@@ -6,16 +6,17 @@ const DramaContext = createContext();
 
 
 export const DramaProvider = ({ children }) => {
+
     const [dramas, setDramas] = useState([]);
     const [search, setSearch] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [sortOrder, setSortOrder] = useState("");
-    const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [favorites, setFavorites] = useStorage("favorites", []);
-    
+
 
     const categoriesRef = useRef([]);
+
 
 
     const fetchJson = async (url) => {
@@ -26,7 +27,7 @@ export const DramaProvider = ({ children }) => {
 
 
     //chimata iniziale
-    const fetchInitial = async () => {
+    const fetchAllDramas = async () => {
         console.log("prima chiamata dal context");
 
         setLoading(true)
@@ -36,11 +37,8 @@ export const DramaProvider = ({ children }) => {
             console.log(data);
 
             // estraggo categorie UNA SOLA VOLTA
-            const unique = Array.from(new Set(data.map(d => d.category)));
+            categoriesRef.current = ["Tutte le categorie", ...new Set(data.map(d => d.category))];
 
-            // memorizzo nella ref
-            categoriesRef.current = ["Tutte le categorie", ...unique];
-            setCategories(categoriesRef.current);
 
         } catch (error) {
             console.error("Errore nel caricamento dei drama:", error);
@@ -48,13 +46,11 @@ export const DramaProvider = ({ children }) => {
             setLoading(false);
         }
     };
-    //chimata iniziale
-    useEffect(() => {
-        fetchInitial();
-    }, []);
+    
+ 
 
     //richiesta fetch  con i parametri
-    const fetchParams = async (paramsString) => {
+    const fetchDramasByParams = async (paramsString) => {
         console.log("chiamata con i parametri");
         setLoading(true)
         try {
@@ -62,6 +58,10 @@ export const DramaProvider = ({ children }) => {
                 ? await fetchJson(`${VITE_API_URL}?${paramsString}`)
                 : await fetchJson(`${VITE_API_URL}`)
             setDramas(data)
+
+            // estraggo categorie UNA SOLA VOLTA
+            categoriesRef.current = ["Tutte le categorie", ...new Set(data.map(d => d.category))];
+
         } catch (error) {
             console.error("Errore nel caricamento dei drama:", error);
         } finally {
@@ -69,10 +69,14 @@ export const DramaProvider = ({ children }) => {
         }
     };
 
+  
+
 
     // Funzione per trovare un drama specifico tramite il suo ID
-    const getDramaById = (id) => {
-        return dramas.find(drama => drama.id === parseInt(id));
+    const getDramaBySlug = (slug) => {
+        console.log(slug);
+        return dramas.find(drama => drama.slug === slug);
+        
     };
 
 
@@ -111,11 +115,12 @@ export const DramaProvider = ({ children }) => {
                 sortOrder,
                 setSortOrder,
                 loading,
-                getDramaById,
+                getDramaBySlug,
                 favorites,
                 setFavorites,
                 toggleFavorite,
-                fetchParams,
+                fetchDramasByParams,
+                fetchAllDramas
             }}
         >
             {children}

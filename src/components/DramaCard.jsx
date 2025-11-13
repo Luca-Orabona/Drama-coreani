@@ -66,7 +66,7 @@ const DramaCard = memo(({ drama }) => {
 
           {/* 🔗 Dettagli */}
           <NavLink
-            to={`/dramaDetails/${drama.id}`}
+            to={`/dramaDetails/${drama.slug}`}
             className={styles.iconBtn}
             data-label="Dettagli"
           >

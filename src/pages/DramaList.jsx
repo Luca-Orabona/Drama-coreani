@@ -34,10 +34,9 @@ const DramaList = () => {
     setSortOrder,
     loading,
     categoriesRef,
-    fetchParams
+    fetchDramasByParams
   } = useDramaContext();
 
-  const firstMount = useRef(true);
 
   const { getParam, setParam, paramsString } = useFilterParams();
 
@@ -50,6 +49,7 @@ const DramaList = () => {
 
   //debounce
   useEffect(() => {
+    // salta il debounce se l'input viene svuotato
     if (search === "") {
       setParam("search", "");
       return;
@@ -59,24 +59,20 @@ const DramaList = () => {
       setParam("search", search);
     }, 500);
 
+    // pulisce il timer precedente (cleanup)
     return () => clearTimeout(timer);
+
   }, [search]);
 
 
 
   useEffect(() => {
-    //al primo montaggio non esegue la fetch
-    if (firstMount.current) {
-      firstMount.current = false;
-      return
-    };
-
-    fetchParams(paramsString)
+      fetchDramasByParams(paramsString)
   }, [paramsString])
 
 
 
-  // === OPZIONI DI ORDINAMENTO (label/valore separati) ===
+  // OPZIONI DI ORDINAMENTO (label/valore separati) 
   const sortOptions = [
     { label: "Ordina per...", value: "" },
     { label: "Titolo (A-Z)", value: "title-asc" },
@@ -107,34 +103,49 @@ const DramaList = () => {
   return (
 
     <section className={styles.dramaListPage}>
+
       {/* --- HERO --- */}
       <div className={styles.heroSection}>
+
         <h1 className={styles.heroTitle}>Scopri i Migliori K-Drama</h1>
+
         <p className={styles.heroSubtitle}>
           Esplora la nostra collezione curata di drama coreani, dai classici
           senza tempo alle ultime uscite.
         </p>
+
         <NavLink to="/newDrama" className={styles.addDramaBtn}>
           <Plus size={18} />
           Aggiungi Nuovo Drama
         </NavLink>
+
       </div>
+
+
 
       {/* --- FILTRI --- */}
       <div className={styles.filterBar}>
+
         {/* 🔍 RICERCA */}
         <div className={styles.filterInput}>
+
           <Search className={styles.filterIconSearch} size={18} />
+
           <input
             type="text"
             placeholder="Cerca drama..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+
         </div>
 
+
+
+
         {/* 🎭 CATEGORIA */}
-        <div className={styles.filterSelect}>
+        <div className={`${styles.filterSelect} ${styles.filterCat}`}>
+
           <CustomSelect
             icon={<SlidersHorizontal size={18} />}
             options={categoriesRef.current.map(cat => ({ label: cat, value: cat }))}
@@ -152,11 +163,14 @@ const DramaList = () => {
             placeholder="Tutte le categorie"
           />
 
-
         </div>
 
+
+
+
         {/* 🔡 ORDINAMENTO */}
-        <div className={styles.filterSelect}>
+        <div className={`${styles.filterSelect} ${styles.filterSort}`}>
+
           <CustomSelect
             icone={<ArrowDownUp size={18} />}
             options={sortOptions}
@@ -169,21 +183,32 @@ const DramaList = () => {
           />
 
         </div>
+
       </div>
+
+
 
       {/* --- COUNTER --- */}
       <p className={styles.dramaCount}>{dramas.length} drama trovati</p>
 
+
+
+
       {/* --- GRIGLIA --- */}
       {loading
         ?
+
         <ClipLoader size={30} color="#592ea1" />
+
         :
+
         <div className={styles.dramaGrid}>
+
           {sortedDramas.map((drama) => (
             <div key={drama.id} className={styles.col}>
               <DramaCard drama={drama} />
             </div>))}
+
         </div>}
 
     </section>
