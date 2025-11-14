@@ -7,16 +7,27 @@ const DramaContext = createContext();
 
 export const DramaProvider = ({ children }) => {
 
+    const [allDramas, setAllDramas] = useState([]);
     const [dramas, setDramas] = useState([]);
+
     const [search, setSearch] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [sortOrder, setSortOrder] = useState("");
     const [loading, setLoading] = useState(true);
     const [favorites, setFavorites] = useStorage("favorites", []);
+    const [categories, setCategories] = useState([]);
+    const [reloadCompare, setReloadCompare] = useState(false);
+    const [reloadDramaList, setReloadDramaList] = useState(false);
 
+    // REFERENZA del primo montaggio per pagina CONFRONTO (per non fare fetch ogni volta che si ritorna sulla pagina)
+    const firstMount = useRef(true);
 
-    const categoriesRef = useRef([]);
+    // REFERENZA del primo montaggio per pagina DRAMALIST 
+    // permette di scrivere subito la query SEARCH(SE ESISTE) nell'url evitando la chiamata che causa un flash
+    // dovuto alla chiamata di tutti i drama causata dal debaunce
+    const firstMountDramaList = useRef(true);
 
+    const lastParamsRef = useRef("");
 
 
     const fetchJson = async (url) => {
@@ -24,6 +35,22 @@ export const DramaProvider = ({ children }) => {
         const obj = await resp.json();
         return obj;
     };
+
+    useEffect(() => {
+        const loadCategories = async () => {
+            try {
+                const data = await fetchJson(`${VITE_API_URL}`);
+
+                setCategories(["Tutte le categorie", ...new Set(data.map(d => d.category))]);
+
+            } catch (err) {
+                console.error("Errore categorie:", err);
+            }
+        };
+
+        loadCategories();
+    }, []);
+
 
 
     //chimata iniziale
@@ -33,12 +60,8 @@ export const DramaProvider = ({ children }) => {
         setLoading(true)
         try {
             const data = await fetchJson(`${VITE_API_URL}`)
-            setDramas(data)
+            setAllDramas(data);   // lista completa
             console.log(data);
-
-            // estraggo categorie UNA SOLA VOLTA
-            categoriesRef.current = ["Tutte le categorie", ...new Set(data.map(d => d.category))];
-
 
         } catch (error) {
             console.error("Errore nel caricamento dei drama:", error);
@@ -46,11 +69,26 @@ export const DramaProvider = ({ children }) => {
             setLoading(false);
         }
     };
-    
- 
+
+
+
+
+
 
     //richiesta fetch  con i parametri
     const fetchDramasByParams = async (paramsString) => {
+
+        // Evita fetch duplicate quando i parametri non cambiano.
+        // al primo avvio sia lastParamsRef.current che paramsString sono "".
+        // In quel caso la fetch DEVE partire, quindi blocco SOLO se i parametri coincidono
+        // e NON sono stringa vuota.
+        if (lastParamsRef.current === paramsString && lastParamsRef.current !== "") {
+            return;
+        }
+
+
+        lastParamsRef.current = paramsString; // aggiorno il riferimento
+
         console.log("chiamata con i parametri");
         setLoading(true)
         try {
@@ -59,9 +97,6 @@ export const DramaProvider = ({ children }) => {
                 : await fetchJson(`${VITE_API_URL}`)
             setDramas(data)
 
-            // estraggo categorie UNA SOLA VOLTA
-            categoriesRef.current = ["Tutte le categorie", ...new Set(data.map(d => d.category))];
-
         } catch (error) {
             console.error("Errore nel caricamento dei drama:", error);
         } finally {
@@ -69,14 +104,14 @@ export const DramaProvider = ({ children }) => {
         }
     };
 
-  
+
 
 
     // Funzione per trovare un drama specifico tramite il suo ID
     const getDramaBySlug = (slug) => {
         console.log(slug);
         return dramas.find(drama => drama.slug === slug);
-        
+
     };
 
 
@@ -105,13 +140,15 @@ export const DramaProvider = ({ children }) => {
     return (
         <DramaContext.Provider
             value={{
+                allDramas,
+                setAllDramas,
                 dramas,
                 setDramas,
                 search,
                 setSearch,
                 categoryFilter,
                 setCategoryFilter,
-                categoriesRef,
+                categories,
                 sortOrder,
                 setSortOrder,
                 loading,
@@ -120,7 +157,14 @@ export const DramaProvider = ({ children }) => {
                 setFavorites,
                 toggleFavorite,
                 fetchDramasByParams,
-                fetchAllDramas
+                fetchAllDramas,
+                lastParamsRef,
+                firstMount,
+                firstMountDramaList,
+                reloadCompare,
+                setReloadCompare,
+                reloadDramaList,
+                setReloadDramaList
             }}
         >
             {children}

@@ -5,6 +5,7 @@ import DramaList from "./pages/DramaList";
 import DramaDetails from "./pages/DramaDetails";
 import Favorites from "./pages/Favorites";
 import Compare from "./pages/Compare";
+import NewDrama from "./pages/NewDrama";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/dramaDetails/:slug" element={<DramaDetails />} />
             <Route path="/Favorites" element={<Favorites />} />
             <Route path="/confronto-drama" element={<Compare />} />
+            <Route path="/newDrama" element={<NewDrama />} />
           </Route>
         </Routes>
       </BrowserRouter>

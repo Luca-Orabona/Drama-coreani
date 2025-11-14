@@ -3,13 +3,9 @@
     position: relative;
     flex: 1;
     font-family: inherit;
-    /* width: 200px; */
 }
 
-/* ===============================
-BLOCCO SELEZIONATO
-Area cliccabile che mostra l’opzione scelta
-=============================== */
+/* BLOCCO SELEZIONATO Area cliccabile che mostra l’opzione scelta*/
 .selected {
     background: #fff;
     border: 1px solid #d0d7e2;
@@ -28,10 +24,7 @@ Area cliccabile che mostra l’opzione scelta
     background-color: #f8faff;
 }
 
-/* ===============================
-    LISTA OPZIONI
-   Menu a tendina con tutte le opzioni
-   =============================== */
+/* LISTA OPZIONI Menu a tendina con tutte le opzioni */
 .options {
     position: absolute;
     top: calc(100% + 5px);
@@ -49,15 +42,11 @@ Area cliccabile che mostra l’opzione scelta
     z-index: 999;
 }
 
-/* ===============================
-   OPZIONI SINGOLE
-   Stile di ogni <li> nella lista
-   =============================== */
+/* OPZIONI SINGOLE Stile di ogni <li> nella lista */
 .options li {
     margin: 0 4px;
     padding: 7px 15px;
     cursor: pointer;
-    transition: background 0.2s;
     border-radius: 13px;
 }
 
@@ -72,10 +61,7 @@ Area cliccabile che mostra l’opzione scelta
     font-weight: 600;
 }
 
-/* ===============================
-    FRECCIA
-    Piccola icona accanto al testo selezionato
-   =============================== */
+/* FRECCIA Piccola icona accanto al testo selezionato */
 .arrow {
     font-size: 0.8rem;
     margin-left: 8px;
@@ -83,7 +69,7 @@ Area cliccabile che mostra l’opzione scelta
 }
 
 /* Rotazione quando il menu è aperto */
-.open .arrow {
+.selected .arrow {
     transform: rotate(180deg);
 }
 

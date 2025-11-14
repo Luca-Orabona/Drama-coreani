@@ -1,0 +1,131 @@
+.newDramaPage {
+  background: #f7f9fb;
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formTitle {
+  font-size: 2.3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #2b53ca, #d94b4b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.formSubtitle {
+  color: #5f6c80;
+  margin-bottom: 30px;
+  font-size: 1.05rem;
+}
+
+.dramaForm {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dramaForm label {
+  font-weight: 600;
+  color: #2b3d5f;
+  margin-bottom: 4px;
+}
+
+.dramaForm input,
+.dramaForm select,
+.dramaForm textarea {
+  border: 1px solid #ccd3e0;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.dramaForm input:focus,
+.dramaForm select:focus,
+.dramaForm textarea:focus {
+  border-color: #2b53ca;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+/* ROW */
+.formRow {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.formRow div {
+  flex: 1;
+  min-width: 150px;
+}
+
+.formRow label {
+  display: block;
+}
+
+/* BUTTONS */
+.formButtons {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.createBtn {
+  background: #2b53ca;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.createBtn:hover {
+  background: #d94b4b;
+  transform: translateY(-2px);
+}
+
+.cancelBtn {
+  background: #e8ecf3;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancelBtn:hover {
+  background: #d0d7e2;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .dramaForm {
+    padding: 25px;
+  }
+
+  .formRow {
+    flex-direction: column;
+  }
+}
