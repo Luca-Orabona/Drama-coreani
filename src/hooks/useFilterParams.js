@@ -16,7 +16,7 @@ const useFilterParams = () => {
         setParams(newParams, { replace: true });
     }
 
-    return { getParam, setParam, paramsString: params.toString() }
+    return { getParam, setParam, setParams, paramsString: params.toString() }
 };
 
 export default useFilterParams;

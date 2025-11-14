@@ -28,14 +28,14 @@ function CustomSelect({ options, value, onChange = () => {}, placeholder, icon }
 
   // Trova l’etichetta del valore attuale
   const currentLabel =
-    options.find((opt) => opt.value === value)?.label || placeholder;
+    options.find(opt => opt.value === value)?.label || placeholder;
 
   return (
     // === WRAPPER PRINCIPALE ===
     <div className={styles.customSelect} ref={ref}>
 
       <div
-        className={`${styles.selected} ${open ? styles.open : ""}`}
+        className={`${styles.selected}`}
         onClick={() => setOpen(!open)}
       >
         {icon}

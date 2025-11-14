@@ -33,12 +33,17 @@ const DramaList = () => {
     sortOrder,
     setSortOrder,
     loading,
-    categoriesRef,
-    fetchDramasByParams
+    categories,
+    fetchDramasByParams,
+    lastParamsRef,
+    reloadDramaList,
+    setReloadDramaList,
+    firstMountDramaList
   } = useDramaContext();
 
 
-  const { getParam, setParam, paramsString } = useFilterParams();
+  const { getParam, setParam, setParams, paramsString } = useFilterParams();
+
 
   useEffect(() => {
     const [valueSearch, valueCategory, valueSort] = getParam("search", "category", "sort");
@@ -49,6 +54,19 @@ const DramaList = () => {
 
   //debounce
   useEffect(() => {
+
+    // PRIMO MONTAGGIO SE ESISTE UN VALORE NELL'INPUT → applico subito il filtro (per evitare flash di tutti i drama caricati)
+    // senza causerebbe una chiamata di tutti i drama per via del debounce che ritarda la scrittura della query
+    if (firstMountDramaList.current) {
+      firstMountDramaList.current = false;
+
+      if (search) {
+        setParam("search", search);
+      };
+      return;
+    };
+
+
     // salta il debounce se l'input viene svuotato
     if (search === "") {
       setParam("search", "");
@@ -59,6 +77,7 @@ const DramaList = () => {
       setParam("search", search);
     }, 500);
 
+
     // pulisce il timer precedente (cleanup)
     return () => clearTimeout(timer);
 
@@ -67,8 +86,32 @@ const DramaList = () => {
 
 
   useEffect(() => {
-      fetchDramasByParams(paramsString)
-  }, [paramsString])
+    //reload essenziale(collegato con newDrama) serve per ricaricare la pagina nel caso in cui viene aggiunto un nuovo drama
+    if (reloadDramaList) {
+      setReloadDramaList(false)
+
+      //rest campi filtri
+      setSearch("");
+      setCategoryFilter("");
+      setSortOrder("");
+
+      //reset parametri url
+      setParams(new URLSearchParams(), { replace: true });
+
+
+      //reset ultimo parametro
+      lastParamsRef.current = "";
+
+      fetchDramasByParams();
+      return
+    };
+
+
+    fetchDramasByParams(paramsString)
+    lastParamsRef.current = paramsString; // SALVA SEMPRE I FILTRI
+
+
+  }, [paramsString, reloadDramaList])
 
 
 
@@ -148,7 +191,7 @@ const DramaList = () => {
 
           <CustomSelect
             icon={<SlidersHorizontal size={18} />}
-            options={categoriesRef.current.map(cat => ({ label: cat, value: cat }))}
+            options={categories.map(cat => ({ label: cat, value: cat }))}
             value={categoryFilter}
             onChange={(value) => {
               if (value === "Tutte le categorie") {

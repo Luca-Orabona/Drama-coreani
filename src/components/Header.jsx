@@ -2,17 +2,21 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X, Heart, Scale, Sparkles, House } from "lucide-react";
 import { useDramaContext } from "../context/dramaContext";
+import useFilterParams from "../hooks/useFilterParams";
 import styles from "./Header.module.css";
 
 const Header = () => {
+
     // Gestisce l’apertura e chiusura del menu mobile
     const [menuOpen, setMenuOpen] = useState(false);
 
     // Dati provenienti dal contesto (lista preferiti)
-    const { favorites } = useDramaContext();
+    const { favorites, lastParamsRef } = useDramaContext();
 
     // Funzione che mostra/nasconde il menu mobile
     const toggleMenu = () => setMenuOpen(prev => !prev);
+
+   
 
     return (
         <header className={styles.header}>
@@ -34,9 +38,10 @@ const Header = () => {
                     Home
                 </NavLink>
 
+
                 {/* Lista Drama */}
                 <NavLink
-                    to="/dramaList"
+                    to={`/dramalist?${lastParamsRef.current}`}
                     onClick={() => setMenuOpen(false)}
                     className={({ isActive }) => isActive ? styles.activeLink : undefined}
                 >

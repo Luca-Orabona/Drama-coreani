@@ -7,11 +7,24 @@ import styles from "./Compare.module.css";
 
 function Compare() {
 
-  const { dramas, fetchAllDramas } = useDramaContext();
+  const { allDramas, fetchAllDramas, firstMount, reloadCompare, setReloadCompare } = useDramaContext();
 
-    useEffect(() => {
-        fetchAllDramas();
-    }, []);
+
+
+  useEffect(() => {
+    // evita di rifare la fetch ogni volta che si ritorna in pagina
+    if (firstMount.current) {
+      firstMount.current = false;
+      fetchAllDramas();
+    }
+
+    // serve per caricare tutti i drama nel caso in cui ne viene aggiunto uno. (si collega alla pagina NewDrama)
+    if (reloadCompare) {
+      setReloadCompare(false)
+      fetchAllDramas();
+    }
+
+  }, [reloadCompare]);
 
   // Ogni slot rappresenta un "contenitore" di un drama
   const [slots, setSlots] = useState([
@@ -24,7 +37,7 @@ function Compare() {
   const [activeSlotId, setActiveSlotId] = useState(null); // Slot attualmente aperto (popup visibile)
 
 
-  // === STATI PER LA RICERCA NELLA POPUP ===
+  // STATI PER LA RICERCA NELLA POPUP
   const [showSearch, setShowSearch] = useState(false); // mostra/nasconde l’input di ricerca
   const [search, setSearch] = useState("");
 
@@ -113,7 +126,7 @@ function Compare() {
 
 
   // FILTRO DI RICERCA DEI DRAMA 
-  const filteredDramas = dramas.filter(d =>
+  const filteredDramas = allDramas.filter(d =>
     d.title.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -277,7 +290,7 @@ function Compare() {
       {/* ===================== TABELLA DI CONFRONTO ===================== */}
       {selected.length >= 2 && (
         <div className={styles.comparisonTable}>
-          
+
           <h3 className={styles.tableTitle}>Tabella di confronto</h3>
           <div className={styles.tableScroll}>
             <table>
