@@ -7,17 +7,11 @@ import styles from "./Compare.module.css";
 
 function Compare() {
 
-  const { allDramas, fetchAllDramas, firstMount, reloadCompare, setReloadCompare } = useDramaContext();
+  const { allDramas, fetchAllDramas, reloadCompare, setReloadCompare } = useDramaContext();
 
 
 
   useEffect(() => {
-    // evita di rifare la fetch ogni volta che si ritorna in pagina
-    if (firstMount.current) {
-      firstMount.current = false;
-      fetchAllDramas();
-    }
-
     // serve per caricare tutti i drama nel caso in cui ne viene aggiunto uno. (si collega alla pagina NewDrama)
     if (reloadCompare) {
       setReloadCompare(false)

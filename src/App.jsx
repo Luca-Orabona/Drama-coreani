@@ -1,6 +1,5 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import GuestLayout from "./layout/GuestLayout";
-import Home from "./pages/Home";
 import DramaList from "./pages/DramaList";
 import DramaDetails from "./pages/DramaDetails";
 import Favorites from "./pages/Favorites";
@@ -15,8 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<GuestLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/dramaList" element={<DramaList />} />
+            <Route path="/" element={<DramaList />} />
             <Route path="/dramaDetails/:slug" element={<DramaDetails />} />
             <Route path="/Favorites" element={<Favorites />} />
             <Route path="/confronto-drama" element={<Compare />} />

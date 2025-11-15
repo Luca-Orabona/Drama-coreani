@@ -9,7 +9,7 @@ import styles from "./DramaCard.module.css";
 
 const DramaCard = memo(({ drama }) => {
   const { favorites, toggleFavorite } = useDramaContext();
-  const isFavorite = favorites.some((fav) => fav.id === drama.id);
+  const isFavorite = favorites.some(fav => fav.id === drama.id);
 
   function truncateByWords(text, wordCount = 15) {
     if (!text) return "";

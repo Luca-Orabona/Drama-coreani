@@ -28,20 +28,10 @@ const Header = () => {
             {/* NAVBAR — Link principali */}
             <nav className={`${styles.navLinks} ${menuOpen ? styles.navLinksActive : ""}`}>
 
-                {/* Home */}
-                <NavLink
-                    to="/"
-                    onClick={() => setMenuOpen(false)}
-                    className={({ isActive }) => isActive ? styles.activeLink : undefined}
-                >
-                    <House size={18} style={{ marginRight: "6px" }} />
-                    Home
-                </NavLink>
-
 
                 {/* Lista Drama */}
                 <NavLink
-                    to={`/dramalist?${lastParamsRef.current}`}
+                    to={`/?${lastParamsRef.current}`}
                     onClick={() => setMenuOpen(false)}
                     className={({ isActive }) => isActive ? styles.activeLink : undefined}
                 >

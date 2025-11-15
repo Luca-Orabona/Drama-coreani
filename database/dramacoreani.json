@@ -1,0 +1,365 @@
+[
+  {
+    "title": "Crash Landing on You",
+    "category": "Romantico",
+    "episodes": 16,
+    "year": 2019,
+    "rating": 9,
+    "platform": "Netflix",
+    "coverImage": "/public/photo_2025-10-15_16-20-20.jpg",
+    "mainActors": [
+      "Hyun Bin",
+      "Son Ye-jin"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 70,
+    "tags": [
+      "romantico",
+      "comico",
+      "drammatico"
+    ],
+    "description": "Una ricca ereditiera sudcoreana finisce accidentalmente in Corea del Nord. Viene trovata da un ufficiale dell'esercito che decide di proteggerla, dando inizio a un amore proibito tra due mondi opposti.",
+    "status": "Completo",
+    "network": "tvN",
+    "director": "Lee Jung-hyo",
+    "trailerUrl": "https://www.youtube.com/watch?v=crashLandingTrailer",
+    "slug": "Crash Landing on You",
+    "id": 1,
+    "createdAt": "2025-11-11T09:06:53.233Z",
+    "updatedAt": "2025-11-11T09:06:53.233Z"
+  },
+  {
+    "title": "Kingdom",
+    "category": "Storico/Thriller",
+    "episodes": 6,
+    "year": 2019,
+    "rating": 8.8,
+    "platform": "Netflix",
+    "coverImage": "/public/photo_2025-10-22_23-31-25.jpg",
+    "mainActors": [
+      "Ju Ji-hoon",
+      "Bae Doona"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 60,
+    "tags": [
+      "storico",
+      "zombie",
+      "thriller"
+    ],
+    "description": "Ambientato durante la dinastia Joseon, un principe scopre un'epidemia che trasforma i morti in creature affamate. Tra intrighi politici e orrore, deve salvare il regno.",
+    "status": "Completo",
+    "network": "Netflix Original",
+    "director": "Kim Seong-hun",
+    "trailerUrl": "https://www.youtube.com/watch?v=kingdomTrailer",
+    "slug": "Kingdom",
+    "id": 2,
+    "createdAt": "2025-11-11T09:07:42.606Z",
+    "updatedAt": "2025-11-11T09:07:42.606Z"
+  },
+  {
+    "title": "Itaewon Class",
+    "category": "Drammatico",
+    "episodes": 16,
+    "year": 2020,
+    "rating": 8.5,
+    "platform": "Netflix",
+    "coverImage": "/public/itaewon Class.jpeg",
+    "mainActors": [
+      "Park Seo-joon",
+      "Kim Da-mi"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 60,
+    "tags": [
+      "drammatico",
+      "vendetta",
+      "amore"
+    ],
+    "description": "Un giovane ex detenuto apre un bar a Itaewon per vendicarsi del conglomerato che gli ha distrutto la vita. Con una squadra di emarginati, inizia una guerra per la giustizia.",
+    "status": "Completo",
+    "network": "JTBC",
+    "director": "Kim Sung-yoon",
+    "trailerUrl": "https://www.youtube.com/watch?v=itaewonTrailer",
+    "slug": "Itaewon Class",
+    "id": 3,
+    "createdAt": "2025-11-11T09:08:44.900Z",
+    "updatedAt": "2025-11-11T09:08:44.900Z"
+  },
+  {
+    "title": "Vincenzo",
+    "category": "Commedia/Thriller",
+    "episodes": 20,
+    "year": 2021,
+    "rating": 8.7,
+    "platform": "Netflix",
+    "coverImage": "/public/Vincenzo.jpeg",
+    "mainActors": [
+      "Song Joong-ki",
+      "Jeon Yeo-been"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 60,
+    "tags": [
+      "thriller",
+      "comico",
+      "azione"
+    ],
+    "description": "Un avvocato della mafia italiana torna in Corea per recuperare un tesoro nascosto. Affronta una multinazionale corrotta usando metodi spietati e umorismo nero.",
+    "status": "Completo",
+    "network": "tvN",
+    "director": "Kim Hee-won",
+    "trailerUrl": "https://www.youtube.com/watch?v=vincenzoTrailer",
+    "slug": "Vincenzo",
+    "id": 4,
+    "createdAt": "2025-11-11T09:09:13.116Z",
+    "updatedAt": "2025-11-11T09:09:13.116Z"
+  },
+  {
+    "title": "Sweet Home",
+    "category": "Horror/Thriller",
+    "episodes": 10,
+    "year": 2020,
+    "rating": 8.2,
+    "platform": "Netflix",
+    "coverImage": "/public/Sweet Home.jpeg",
+    "mainActors": [
+      "Song Kang",
+      "Lee Jin-wook"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 70,
+    "tags": [
+      "horror",
+      "sopravvivenza",
+      "thriller"
+    ],
+    "description": "In un condominio isolato, gli abitanti devono sopravvivere quando le persone iniziano a trasformarsi in mostri guidati dai loro desideri interiori.",
+    "status": "Completo",
+    "network": "Netflix Original",
+    "director": "Lee Eung-bok",
+    "trailerUrl": "https://www.youtube.com/watch?v=sweethomeTrailer",
+    "slug": "Sweet Home",
+    "id": 5,
+    "createdAt": "2025-11-11T09:09:34.925Z",
+    "updatedAt": "2025-11-11T09:09:34.925Z"
+  },
+  {
+    "title": "My Mister",
+    "category": "Drammatico",
+    "episodes": 16,
+    "year": 2018,
+    "rating": 9.1,
+    "platform": "Viki",
+    "coverImage": "/public/My Mister.jpeg",
+    "mainActors": [
+      "Lee Sun-kyun",
+      "IU"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 60,
+    "tags": [
+      "drammatico",
+      "società",
+      "famiglia"
+    ],
+    "description": "Un uomo di mezza età e una giovane donna con un passato doloroso si aiutano a vicenda a guarire emotivamente in un mondo pieno di pressioni sociali.",
+    "status": "Completo",
+    "network": "tvN",
+    "director": "Kim Won-seok",
+    "trailerUrl": "https://www.youtube.com/watch?v=myMisterTrailer",
+    "slug": "My Mister",
+    "id": 6,
+    "createdAt": "2025-11-11T09:09:58.410Z",
+    "updatedAt": "2025-11-11T09:09:58.410Z"
+  },
+  {
+    "title": "Start-Up",
+    "category": "Romantico/Drammatico",
+    "episodes": 16,
+    "year": 2020,
+    "rating": 8.3,
+    "platform": "Netflix",
+    "coverImage": "/public/Start-Up.jpeg",
+    "mainActors": [
+      "Bae Suzy",
+      "Nam Joo-hyuk"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 60,
+    "tags": [
+      "startup",
+      "romantico",
+      "drammatico"
+    ],
+    "description": "Giovani aspiranti imprenditori lottano per farsi strada nel mondo delle startup, tra sogni, amore e competizione spietata.",
+    "status": "Completo",
+    "network": "tvN",
+    "director": "Oh Choong-hwan",
+    "trailerUrl": "https://www.youtube.com/watch?v=startupTrailer",
+    "slug": "Start-Up",
+    "id": 7,
+    "createdAt": "2025-11-11T09:10:20.284Z",
+    "updatedAt": "2025-11-11T09:10:20.284Z"
+  },
+  {
+    "title": "The King: Eternal Monarch",
+    "category": "Romantico/Fantasy",
+    "episodes": 16,
+    "year": 2020,
+    "rating": 7.9,
+    "platform": "Netflix",
+    "coverImage": "/public/The King Eternal Monarch.jpeg",
+    "mainActors": [
+      "Lee Min-ho",
+      "Kim Go-eun"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 70,
+    "tags": [
+      "fantasy",
+      "romantico",
+      "re"
+    ],
+    "description": "Un imperatore attraversa un portale verso un universo parallelo dove incontra una detective che cambierà il suo destino.",
+    "status": "Completo",
+    "network": "SBS",
+    "director": "Baek Sang-hoon",
+    "trailerUrl": "https://www.youtube.com/watch?v=theKingTrailer",
+    "slug": "The King: Eternal Monarch",
+    "id": 8,
+    "createdAt": "2025-11-11T09:10:42.886Z",
+    "updatedAt": "2025-11-11T09:10:42.886Z"
+  },
+  {
+    "title": "Hospital Playlist",
+    "category": "Drammatico/Commedia",
+    "episodes": 12,
+    "year": 2020,
+    "rating": 8.9,
+    "platform": "Netflix",
+    "coverImage": "/public/Hospital Playlist.jpeg",
+    "mainActors": [
+      "Jo Jung-suk",
+      "Jeon Mi-do"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 60,
+    "tags": [
+      "medico",
+      "drammatico",
+      "comico"
+    ],
+    "description": "Cinque amici medici lavorano insieme in ospedale condividendo la vita quotidiana tra casi clinici intensi, musica e legami profondi.",
+    "status": "Completo",
+    "network": "tvN",
+    "director": "Shin Won-ho",
+    "trailerUrl": "https://www.youtube.com/watch?v=hospitalPlaylistTrailer",
+    "slug": "Hospital Playlist",
+    "id": 9,
+    "createdAt": "2025-11-11T09:11:04.170Z",
+    "updatedAt": "2025-11-11T09:11:04.170Z"
+  },
+  {
+    "title": "It's Okay to Not Be Okay",
+    "category": "Romantico/Drammatico",
+    "episodes": 16,
+    "year": 2020,
+    "rating": 8.7,
+    "platform": "Netflix",
+    "coverImage": "/public/It's Okay to Not Be Okay.jpeg",
+    "mainActors": [
+      "Kim Soo-hyun",
+      "Seo Ye-ji"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 70,
+    "tags": [
+      "romantico",
+      "drammatico",
+      "psicologico"
+    ],
+    "description": "Una scrittrice di libri per bambini con disturbi emotivi e un infermiere che si prende cura del fratello autistico si incontrano e scoprono di potersi guarire a vicenda.",
+    "status": "Completo",
+    "network": "tvN",
+    "director": "Park Shin-woo",
+    "trailerUrl": "https://www.youtube.com/watch?v=itsOkayTrailer",
+    "slug": "It's Okay to Not Be Okay",
+    "id": 10,
+    "createdAt": "2025-11-11T09:11:24.739Z",
+    "updatedAt": "2025-11-11T09:11:24.739Z"
+  },
+  {
+    "title": "Black Knight",
+    "category": "Azione/Fantascienza",
+    "episodes": 6,
+    "year": 2023,
+    "rating": 7.8,
+    "platform": "Netflix",
+    "coverImage": "/public/img-2.jpg",
+    "mainActors": [
+      "Kim Woo-bin",
+      "Esom"
+    ],
+    "language": "Coreano",
+    "subtitles": [
+      "Italiano",
+      "Inglese"
+    ],
+    "duration": 55,
+    "tags": [
+      "fantascienza",
+      "azione",
+      "distopico"
+    ],
+    "description": "In un futuro dove l'aria è diventata tossica, un leggendario corriere noto come '5-8' combatte contro un regime corrotto per proteggere i sopravvissuti e ispirare la speranza.",
+    "status": "Completo",
+    "network": "Netflix Original",
+    "director": "Cho Ui-seok",
+    "trailerUrl": "https://www.youtube.com/watch?v=blackKnightTrailer",
+    "slug": "Black Knight",
+    "id": 11,
+    "createdAt": "2025-11-12T21:44:31.632Z",
+    "updatedAt": "2025-11-12T21:44:31.632Z"
+  }
+]

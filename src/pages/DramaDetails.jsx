@@ -7,11 +7,11 @@ import { useEffect } from "react";
 
 function DramaDetails() {
   const { slug } = useParams();
-  const { dramas, getDramaBySlug, toggleFavorite, favorites, fetchAllDramas } = useDramaContext();
+  const { dramas, getDramaBySlug, toggleFavorite, favorites, fetchDramasByParams } = useDramaContext();
 
   useEffect(() => {
     if (dramas.length === 0) {
-      fetchAllDramas();
+      fetchDramasByParams("");
     };
   }, []);
 
@@ -21,7 +21,7 @@ function DramaDetails() {
     return <p className={styles.notFound}>Drama non trovato 😔</p>;
   }
 
-  const isFavorite = favorites.some((fav) => fav.id === drama.id);
+  const isFavorite = favorites.some(fav => fav.id === drama.id);
 
   return (
     <section className={styles.dramaDetails}>
