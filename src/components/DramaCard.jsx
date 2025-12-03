@@ -8,8 +8,11 @@ import styles from "./DramaCard.module.css";
 
 
 const DramaCard = memo(({ drama }) => {
+
+  console.log("card");
+  
   const { favorites, toggleFavorite } = useDramaContext();
-  const isFavorite = favorites.some((fav) => fav.id === drama.id);
+  const isFavorite = favorites.some(fav => fav.id === drama.id);
 
   function truncateByWords(text, wordCount = 15) {
     if (!text) return "";
@@ -37,7 +40,7 @@ const DramaCard = memo(({ drama }) => {
           {/* ❤️ Preferiti */}
           <button
             className={`${styles.iconBtn} ${isFavorite ? styles.active : ""}`}
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
 
               if (isFavorite) {

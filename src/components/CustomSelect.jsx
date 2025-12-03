@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import styles from "./CustomSelect.module.css";
 
 
 
 function CustomSelect({ options, value, onChange = () => {}, placeholder, icon }) {
-
 
   // Controlla se il menu è aperto o chiuso
   const [open, setOpen] = useState(false);
@@ -75,4 +74,4 @@ function CustomSelect({ options, value, onChange = () => {}, placeholder, icon }
 }
 
 
-export default CustomSelect;
+export default memo(CustomSelect);

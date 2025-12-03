@@ -7,17 +7,11 @@ import styles from "./Compare.module.css";
 
 function Compare() {
 
-  const { allDramas, fetchAllDramas, firstMount, reloadCompare, setReloadCompare } = useDramaContext();
+  const { allDramas, fetchAllDramas, reloadCompare, setReloadCompare } = useDramaContext();
 
 
 
   useEffect(() => {
-    // evita di rifare la fetch ogni volta che si ritorna in pagina
-    if (firstMount.current) {
-      firstMount.current = false;
-      fetchAllDramas();
-    }
-
     // serve per caricare tutti i drama nel caso in cui ne viene aggiunto uno. (si collega alla pagina NewDrama)
     if (reloadCompare) {
       setReloadCompare(false)
@@ -61,7 +55,7 @@ function Compare() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [])
 
 
 
@@ -82,7 +76,7 @@ function Compare() {
     setSearch("");
   };
 
-
+;
 
 
   // Assegna un drama selezionato a uno slot
@@ -113,11 +107,11 @@ function Compare() {
   const removeDrama = (slotId) => {
     if (slots.length > 2) {
       // Se ci sono più di 2 slot rimuovo completamente quello selezionato
-      setSlots(prev => prev.filter((s) => s.id !== slotId));
+      setSlots(prev => prev.filter(s => s.id !== slotId));
     } else {
       // Se sono solo 2 slot svuoto il drama ma lascio lo slot
       setSlots(prev =>
-        prev.map(s => (s.id === slotId ? { ...s, drama: null } : s))
+        prev.map(s => s.id === slotId ? { ...s, drama: null } : s)
       );
     }
   };
@@ -187,7 +181,7 @@ function Compare() {
                 <div className={`${styles.emptySlot}`} onClick={() => openPopup(slot.id)}>
 
                   {/* Icona "+" visibile finché non è attivo */}
-                  {!isActive && <Plus size={38} />}
+                  {<Plus size={38} />}
 
                   {/* Quando lo slot è attivo mostra la popup */}
                   {isActive && (
@@ -234,7 +228,7 @@ function Compare() {
 
                       {/* LISTA DRAMA FILTRATA */}
                       <ul className={styles.listDrama}>
-                        {filteredDramas.length > 0 ? (
+                        {filteredDramas ? (
                           filteredDramas.map(d => (
                             <li
                               key={d.id}

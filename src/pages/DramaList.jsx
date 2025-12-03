@@ -44,6 +44,9 @@ const DramaList = () => {
 
   const { getParam, setParam, setParams, paramsString } = useFilterParams();
 
+  const isResetting = useRef(false);
+
+
 
   useEffect(() => {
     const [valueSearch, valueCategory, valueSort] = getParam("search", "category", "sort");
@@ -58,7 +61,7 @@ const DramaList = () => {
     // PRIMO MONTAGGIO SE ESISTE UN VALORE NELL'INPUT → applico subito il filtro (per evitare flash di tutti i drama caricati)
     // senza causerebbe una chiamata di tutti i drama per via del debounce che ritarda la scrittura della query
     if (firstMountDramaList.current) {
-      firstMountDramaList.current = false;
+
 
       if (search) {
         setParam("search", search);
@@ -86,32 +89,81 @@ const DramaList = () => {
 
 
   useEffect(() => {
-    //reload essenziale(collegato con newDrama) serve per ricaricare la pagina nel caso in cui viene aggiunto un nuovo drama
-    if (reloadDramaList) {
-      setReloadDramaList(false)
 
-      //rest campi filtri
-      setSearch("");
-      setCategoryFilter("");
-      setSortOrder("");
+  // ===  PROTEZIONE DURANTE IL RESET ===
+  if (isResetting.current) {
 
-      //reset parametri url
-      setParams(new URLSearchParams(), { replace: true });
-
-
-      //reset ultimo parametro
-      lastParamsRef.current = "";
-
-      fetchDramasByParams();
-      return
-    };
-
-
-    fetchDramasByParams(paramsString)
-    lastParamsRef.current = paramsString; // SALVA SEMPRE I FILTRI
+    // Sblocca solo quando TUTTI i filtri + params sono resettati
+    if (
+      paramsString === "" &&
+      search === "" &&
+      categoryFilter === "" &&
+      sortOrder === ""
+    ) {
+      // Ora la situazione è stabile → sblocco
+      isResetting.current = false;
+    } else {
+      // Stato ancora instabile → blocca tutto
+      return;
+    }
+  }
 
 
-  }, [paramsString, reloadDramaList])
+  // ===  RESET DOPO AGGIUNTA DRAMA ===
+  if (reloadDramaList) {
+    isResetting.current = true; // blocca gli useEffect successivi
+    setReloadDramaList(false);
+
+    // Reset filtri
+    setSearch("");
+    setCategoryFilter("");
+    setSortOrder("");
+
+    // Reset URL params
+    setParams(new URLSearchParams(), { replace: true });
+
+    // Reset ultimi parametri memorizzati
+    lastParamsRef.current = "";
+
+    // Fetch senza parametri
+    fetchDramasByParams("");
+    console.log("chiamata per aggiunta drama");
+
+    return; // termina qui finché non si stabilizza
+  }
+
+
+
+  // === PRIMO MONTAGGIO ===
+  if (firstMountDramaList.current) {
+    firstMountDramaList.current = false;
+
+    if (lastParamsRef.current === "") {
+      fetchDramasByParams(paramsString);
+      lastParamsRef.current = paramsString;
+      console.log("chiamata al primo montaggio");
+    }
+
+    return;
+  }
+
+
+
+  // === EVITA CHIAMATE DUPLICATE ===
+  if (lastParamsRef.current === paramsString) {
+    return;
+  }
+
+
+
+  // === CHIAMATA NORMALE (dopo primo montaggio) ===
+  fetchDramasByParams(paramsString);
+  console.log("chiamata dopo il primo montaggio");
+
+  lastParamsRef.current = paramsString;
+
+}, [paramsString, reloadDramaList]);
+
 
 
 
@@ -178,7 +230,7 @@ const DramaList = () => {
             type="text"
             placeholder="Cerca drama..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={e => setSearch(e.target.value)}
           />
 
         </div>
@@ -215,7 +267,7 @@ const DramaList = () => {
         <div className={`${styles.filterSelect} ${styles.filterSort}`}>
 
           <CustomSelect
-            icone={<ArrowDownUp size={18} />}
+            icon={<ArrowDownUp size={18} />}
             options={sortOptions}
             value={sortOrder}
             onChange={(value) => {

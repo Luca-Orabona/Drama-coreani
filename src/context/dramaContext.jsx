@@ -19,13 +19,12 @@ export const DramaProvider = ({ children }) => {
     const [reloadCompare, setReloadCompare] = useState(false);
     const [reloadDramaList, setReloadDramaList] = useState(false);
 
-    // REFERENZA del primo montaggio per pagina CONFRONTO (per non fare fetch ogni volta che si ritorna sulla pagina)
-    const firstMount = useRef(true);
 
     // REFERENZA del primo montaggio per pagina DRAMALIST 
     // permette di scrivere subito la query SEARCH(SE ESISTE) nell'url evitando la chiamata che causa un flash
     // dovuto alla chiamata di tutti i drama causata dal debaunce
     const firstMountDramaList = useRef(true);
+
 
     const lastParamsRef = useRef("");
 
@@ -36,6 +35,7 @@ export const DramaProvider = ({ children }) => {
         return obj;
     };
 
+    // salvo le categorie
     useEffect(() => {
         const loadCategories = async () => {
             try {
@@ -53,15 +53,14 @@ export const DramaProvider = ({ children }) => {
 
 
 
-    //chimata iniziale
+    //chimata di tutti i drama
     const fetchAllDramas = async () => {
-        console.log("prima chiamata dal context");
+        console.log("chiamata AllDrama dal context");
 
         setLoading(true)
         try {
             const data = await fetchJson(`${VITE_API_URL}`)
             setAllDramas(data);   // lista completa
-            console.log(data);
 
         } catch (error) {
             console.error("Errore nel caricamento dei drama:", error);
@@ -70,6 +69,10 @@ export const DramaProvider = ({ children }) => {
         }
     };
 
+    useEffect(() => {
+        fetchAllDramas();
+    }, []);
+
 
 
 
@@ -77,19 +80,7 @@ export const DramaProvider = ({ children }) => {
 
     //richiesta fetch  con i parametri
     const fetchDramasByParams = async (paramsString) => {
-
-        // Evita fetch duplicate quando i parametri non cambiano.
-        // al primo avvio sia lastParamsRef.current che paramsString sono "".
-        // In quel caso la fetch DEVE partire, quindi blocco SOLO se i parametri coincidono
-        // e NON sono stringa vuota.
-        if (lastParamsRef.current === paramsString && lastParamsRef.current !== "") {
-            return;
-        }
-
-
-        lastParamsRef.current = paramsString; // aggiorno il riferimento
-
-        console.log("chiamata con i parametri");
+   
         setLoading(true)
         try {
             const data = paramsString
@@ -107,9 +98,8 @@ export const DramaProvider = ({ children }) => {
 
 
 
-    // Funzione per trovare un drama specifico tramite il suo ID
+    // Funzione per trovare un drama specifico tramite il suo slug (DramaDetails)
     const getDramaBySlug = (slug) => {
-        console.log(slug);
         return dramas.find(drama => drama.slug === slug);
 
     };
@@ -159,7 +149,6 @@ export const DramaProvider = ({ children }) => {
                 fetchDramasByParams,
                 fetchAllDramas,
                 lastParamsRef,
-                firstMount,
                 firstMountDramaList,
                 reloadCompare,
                 setReloadCompare,

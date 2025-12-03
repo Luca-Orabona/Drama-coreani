@@ -43,7 +43,7 @@ const Favorites = () => {
             esplorare e salva i tuoi preferiti!
           </p>
 
-          <Link to="/dramaList" className={styles.exploreBtn}>
+          <Link to="/" className={styles.exploreBtn}>
             Esplora Drama
           </Link>
 

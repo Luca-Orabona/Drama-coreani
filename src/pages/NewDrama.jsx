@@ -114,7 +114,7 @@ const NewDrama = () => {
         <label>Regista</label>
         <input ref={directorRef} type="text" />
 
-        <label>Rete</label>
+        <label>Piattaforma</label>
         <input ref={networkRef} type="text" placeholder="Es. tvN, Netflix" />
 
         <label>URL Poster</label>
